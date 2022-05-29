@@ -29,10 +29,13 @@ while run:
     if parar == "s" :
         cv2.imwrite(nome_arquivo, img)
         run = False
-        conteudo = ler_codigo(nome_arquivo)
-        preco_valor = ler_precificacao(conteudo)
 
+        try:
+            conteudo = ler_codigo(nome_arquivo)
+            preco_valor = ler_precificacao(conteudo)
+
+            st.success("PREÇO: R$ {}".format(preco_valor))
+        except:
+            st.warning("NÃO IDENTIFICADO")
+        
         remove(nome_arquivo)
-
-        st.success("PREÇO: R$ {}".format(preco_valor))
-
